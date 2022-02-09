@@ -1,0 +1,15 @@
+2022-02-02 13:13:00.246  INFO 192.168.1.6 --- [  restartedMain] c.e.B.BikeRentalSystemApplication        : Starting BikeRentalSystemApplication using Java 17.0.1 on 192.168.1.6 with PID 6950 (/Users/licious/Documents/Bike-Rental-System-Springboot-MongoDB-project/BikeRentalSystem/target/classes started by licious in /Users/licious/Documents/Bike-Rental-System-Springboot-MongoDB-project/BikeRentalSystem)
+2022-02-02 13:13:00.249 DEBUG 192.168.1.6 --- [  restartedMain] c.e.B.BikeRentalSystemApplication        : Running with Spring Boot v2.6.2, Spring v5.3.14
+2022-02-02 13:13:00.250  INFO 192.168.1.6 --- [  restartedMain] c.e.B.BikeRentalSystemApplication        : No active profile set, falling back to default profiles: default
+2022-02-02 13:13:00.955  INFO 192.168.1.6 --- [  restartedMain] o.a.c.h.Http11NioProtocol                : Initializing ProtocolHandler ["http-nio-8081"]
+2022-02-02 13:13:00.955  INFO 192.168.1.6 --- [  restartedMain] o.a.c.c.StandardService                  : Starting service [Tomcat]
+2022-02-02 13:13:00.956  INFO 192.168.1.6 --- [  restartedMain] o.a.c.c.StandardEngine                   : Starting Servlet engine: [Apache Tomcat/9.0.56]
+2022-02-02 13:13:00.983  INFO 192.168.1.6 --- [  restartedMain] o.a.c.c.C.[.[.[/]                        : Initializing Spring embedded WebApplicationContext
+2022-02-02 13:13:01.066  INFO 192.168.1.6 --- [  restartedMain] o.m.d.cluster                            : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2022-02-02 13:13:01.108  INFO 192.168.1.6 --- [localhost:27017] o.m.d.connection                         : Opened connection [connectionId{localValue:2, serverValue:179}] to localhost:27017
+2022-02-02 13:13:01.108  INFO 192.168.1.6 --- [localhost:27017] o.m.d.connection                         : Opened connection [connectionId{localValue:1, serverValue:180}] to localhost:27017
+2022-02-02 13:13:01.108  INFO 192.168.1.6 --- [localhost:27017] o.m.d.cluster                            : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=13, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=9200750}
+2022-02-02 13:13:01.534  INFO 192.168.1.6 --- [  restartedMain] o.a.c.h.Http11NioProtocol                : Starting ProtocolHandler ["http-nio-8081"]
+2022-02-02 13:13:01.679  INFO 192.168.1.6 --- [  restartedMain] c.e.B.BikeRentalSystemApplication        : Started BikeRentalSystemApplication in 1.589 seconds (JVM running for 2.08)
+2022-02-02 13:13:09.299  INFO 192.168.1.6 --- [nio-8081-exec-1] o.a.c.c.C.[.[.[/]                        : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-02-02 13:13:21.247  INFO 192.168.1.6 --- [nio-8081-exec-1] o.m.d.connection                         : Opened connection [connectionId{localValue:3, serverValue:181}] to localhost:27017
