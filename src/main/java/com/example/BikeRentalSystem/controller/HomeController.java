@@ -2,6 +2,7 @@ package com.example.BikeRentalSystem.controller;
 import java.security.Principal;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import javax.servlet.http.HttpSession;
 
 import com.example.BikeRentalSystem.RestEndpoints.UserEndpoints;
@@ -73,9 +74,9 @@ public class HomeController {
 
 		Map<String,String> params =new HashMap<>();
 		params.put("email",user.getEmail());
-		Users duplicateUser=restTemplate.getForObject(UserEndpoints.GET_BY_EMAIL,Users.class,params);
+		Optional<Users> duplicateUser=Optional.ofNullable(restTemplate.getForObject(UserEndpoints.GET_BY_EMAIL,Users.class,params));
 		model.addAttribute("user",user);
-		if(duplicateUser!=null){
+		if(duplicateUser.isPresent()){
 			model.addAttribute("user",user);
 			session.setAttribute("message", new Messages("User already Registered !!","alert-danger"));
 			return "signup";
