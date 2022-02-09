@@ -158,11 +158,20 @@ public class AdminController {
 		}
 		Users[] response=restTemplate.getForObject(UserEndpoints.GET_ALL,Users[].class);
 		List<Users> userList=Arrays.asList(response);
+		List<Users> nonAdminList=new ArrayList<>();
+		for(Users u:userList){
+			if(u.getRole().equals("ROLE_ADMIN")){
+				continue;
+			}
+			else{
+				nonAdminList.add(u);
+			}
+		}
 		if(userList.size()==0){
 			model.addAttribute("message",new Messages("No Users","alert alert-danger"));
 			return "admin_list_users";
 		}
-		model.addAttribute("users",userList);
+		model.addAttribute("users",nonAdminList);
 		return "admin_list_users";
 	}
 
