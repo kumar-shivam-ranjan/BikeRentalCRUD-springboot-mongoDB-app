@@ -45,7 +45,7 @@ A company has many hubs located across the city. Each hub has some bikes parked 
 
 ## Rest Endpoints
 #### Swagger UI has been used for REST API documentation.
-#### It can be accessed via the URL: http://localhost:8080/swagger-ui/index.html#/vehicle-rest-controller
+#### It can be accessed via the URL: http://localhost:8080/swagger-ui/index.html
 
 <img width="1424" alt="Screenshot 2022-01-28 at 9 41 16 PM" src="https://user-images.githubusercontent.com/42781233/151581850-726ac4e1-8ddc-44d8-bb83-1b7df59ed962.png">
 <img width="1440" alt="Screenshot 2022-01-28 at 9 39 24 PM" src="https://user-images.githubusercontent.com/42781233/151581537-534ec74b-2665-4c53-a3cb-d36125bba2ac.png">
