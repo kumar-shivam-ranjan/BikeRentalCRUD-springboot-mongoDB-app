@@ -5,8 +5,7 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
-
-
+import java.util.Optional;
 
 
 @Service
@@ -16,32 +15,39 @@ public class BookingsService {
     private BookingsRepository bookingsRepository;
 
     public BookingsService(BookingsRepository bookingsRepository) {
+
         this.bookingsRepository = bookingsRepository;
     }
 
     public List<Bookings> getAllBookings(){
+
         return this.bookingsRepository.findAll();
     }
 
     public List<Bookings> getBookingsByStatus(boolean status){
+
         return  this.bookingsRepository.findByStatus(status);
     }
 
-    public Bookings getBookingById(ObjectId id){
-        return this.bookingsRepository.findBy_id(id);
+    public Optional<Bookings> getBookingById(String id){
+        return this.bookingsRepository.findById(id);
     }
+
+
     public List<Bookings> getBookingsByEmail(String email){
+
         return this.bookingsRepository.findByEmail(email);
     }
 
     public Bookings addBooking(Bookings booking){
+
         return this.bookingsRepository.save(booking);
     }
 
-    public String deleteBooking(ObjectId id){
+    public String deleteBooking(String id){
         try{
-            Bookings booking=this.bookingsRepository.findBy_id(id);
-            this.bookingsRepository.deleteById(String.valueOf(id));
+            this.bookingsRepository.findById(id).get();
+            this.bookingsRepository.deleteById(id);
             return "Booking deleted successfully";
         }
         catch (Exception e){

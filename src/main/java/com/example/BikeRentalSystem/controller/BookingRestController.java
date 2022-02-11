@@ -38,10 +38,14 @@ public class BookingRestController {
     }
     
     @GetMapping("bookings/{id}")
-    public ResponseEntity<Bookings> getBookingById(@PathVariable("id") ObjectId id){
+    public ResponseEntity<Bookings> getBookingById(@PathVariable("id") String id){
         try{
-            Bookings bookingById = this.bookingsService.getBookingById(id);
-            return ResponseEntity.of(Optional.of(bookingById));
+            Optional<Bookings> bookingById = this.bookingsService.getBookingById(id);
+            if(bookingById.isPresent())
+            return ResponseEntity.of(Optional.of(bookingById.get()));
+            else{
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            }
         }
         catch (Exception e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -53,7 +57,12 @@ public class BookingRestController {
 
         try {
             List<Bookings> bookings=this.bookingsService.getBookingsByEmail(email);
-            return ResponseEntity.of(Optional.of(bookings));
+            if(bookings.size()<=0){
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            }
+            else {
+                return ResponseEntity.of(Optional.of(bookings));
+            }
         }
         catch (Exception e){
             e.printStackTrace();
@@ -62,7 +71,7 @@ public class BookingRestController {
     }
 
     @DeleteMapping("bookings/{id}")
-    public ResponseEntity<Void> deleteBooking(@PathVariable("id") ObjectId id){
+    public ResponseEntity<Void> deleteBooking(@PathVariable("id") String id){
         try {
             this.bookingsService.getBookingById(id);
             this.bookingsService.deleteBooking(id);

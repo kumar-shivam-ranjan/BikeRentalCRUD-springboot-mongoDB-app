@@ -1,6 +1,4 @@
 package com.example.BikeRentalSystem.entities;
-
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -10,7 +8,7 @@ import java.util.Date;
 public class Bookings {
 
     @Id
-    private ObjectId _id;
+    private String id;
     private String email;
     private String vehicleId;
     private int stationId;
@@ -23,26 +21,12 @@ public class Bookings {
     public Bookings() {
     }
 
-    @Override
-    public String toString() {
-        return "Bookings{" +
-                "_id=" + _id +
-                ", email='" + email + '\'' +
-                ", vehicleId='" + vehicleId + '\'' +
-                ", stationId=" + stationId +
-                ", checkInDate=" + checkInDate +
-                ", checkOutDate=" + checkOutDate +
-                ", status=" + status +
-                ", cost=" + cost +
-                '}';
+    public String getId() {
+        return id;
     }
 
-    public String get_id() {
-        return _id.toHexString();
-    }
-
-    public void set_id(ObjectId _id) {
-        this._id = _id;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getEmail() {
@@ -101,8 +85,22 @@ public class Bookings {
         this.cost = cost;
     }
 
-    public Bookings(ObjectId _id, String email, String vehicleId, int stationId, Date checkInDate, Date checkOutDate, boolean status, long cost) {
-        this._id = _id;
+    @Override
+    public String toString() {
+        return "Bookings{" +
+                "id='" + id + '\'' +
+                ", email='" + email + '\'' +
+                ", vehicleId='" + vehicleId + '\'' +
+                ", stationId=" + stationId +
+                ", checkInDate=" + checkInDate +
+                ", checkOutDate=" + checkOutDate +
+                ", status=" + status +
+                ", cost=" + cost +
+                '}';
+    }
+
+    public Bookings(String id, String email, String vehicleId, int stationId, Date checkInDate, Date checkOutDate, boolean status, long cost) {
+        this.id = id;
         this.email = email;
         this.vehicleId = vehicleId;
         this.stationId = stationId;
@@ -111,5 +109,4 @@ public class Bookings {
         this.status = status;
         this.cost = cost;
     }
-
 }

@@ -203,14 +203,14 @@ public class UserController {
 		}
 		else{
 			booking.setStatus(false);
-			booking.set_id(ObjectId.get());
+			booking.setId(String.valueOf(ObjectId.get()));
 			long diff=checkIn.getTime()-checkOut.getTime();
 			Long NoOfDays=TimeUnit.DAYS.convert(diff,TimeUnit.MILLISECONDS);
 			if(NoOfDays<0) NoOfDays=NoOfDays*-1;
 			long price=(NoOfDays/7)*bike.getWeeklyPrice()+(NoOfDays%7)*bike.getDailyPrice();
 			booking.setCost(price);
 			this.restTemplate.postForObject(BookingsEndpoints.POST,booking,Bookings.class);
-			logger.info("Booking done successfully. Booking Id: "+booking.get_id());
+			logger.info("Booking done successfully. Booking Id: "+booking.getId());
 			model.addAttribute("message",new Messages("Booked Successfully !! Please Wait for admin to approve your booking","alert alert-success"));
 		}
 		return "user_bookbike";
@@ -231,23 +231,25 @@ public class UserController {
 		}
 		HashMap<String,String> params=new HashMap<>();
 		params.put("email",principal.getName());
-		ResponseEntity<Bookings[]> response=  this.restTemplate.getForEntity(BookingsEndpoints.GET_BY_EMAIL,Bookings[].class,params);
-		List<Bookings> userBookings=Arrays.asList(response.getBody());
-		if(userBookings.size()==0){
+
+		try {
+			ResponseEntity<Bookings[]> response=  this.restTemplate.getForEntity(BookingsEndpoints.GET_BY_EMAIL,Bookings[].class,params);
+			List<Bookings> userBookings=Arrays.asList(response.getBody());
+			List<Vehicle> userBookedVehicles=new ArrayList<>();
+			for(Bookings booking:userBookings){
+				HashMap<String, String> parameter=new HashMap<>();
+				parameter.put("id",booking.getVehicleId());
+				ResponseEntity<Vehicle> rt=restTemplate.getForEntity(VehicleEndpoints.GET_BY_ID,Vehicle.class,parameter);
+				userBookedVehicles.add(rt.getBody());
+			}
+			model.addAttribute("bookings",userBookings);
+			model.addAttribute("vehicles",userBookedVehicles);
+			return "user_showbookings";
+		}
+		catch (Exception e){
 			model.addAttribute("message",new Messages("No Bookings as of Now","alert alert-danger"));
 			return "user_showbookings";
 		}
-
-		List<Vehicle> userBookedVehicles=new ArrayList<>();
-		for(Bookings booking:userBookings){
-			HashMap<String, String> parameter=new HashMap<>();
-			parameter.put("id",booking.getVehicleId());
-			ResponseEntity<Vehicle> rt=restTemplate.getForEntity(VehicleEndpoints.GET_BY_ID,Vehicle.class,parameter);
-			userBookedVehicles.add(rt.getBody());
-		}
-		model.addAttribute("bookings",userBookings);
-		model.addAttribute("vehicles",userBookedVehicles);
-		return "user_showbookings";
 	}
 
 	@RequestMapping("/delete-booking/{bookingId}")

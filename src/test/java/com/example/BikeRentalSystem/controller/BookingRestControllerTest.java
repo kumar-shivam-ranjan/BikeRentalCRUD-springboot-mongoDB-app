@@ -11,6 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -30,7 +33,7 @@ class BookingRestControllerTest {
         MockHttpServletRequest request=new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
         Bookings bookings=new Bookings();
-        bookings.set_id(ObjectId.get());
+        bookings.setId(String.valueOf(ObjectId.get()));
         bookings.setStatus(false);
         bookings.setEmail("krshivamranjan@gmail.com");
         bookings.setStationId(2);
@@ -44,15 +47,15 @@ class BookingRestControllerTest {
     @Test
     void getBookingById(){
         Bookings bookings=new Bookings();
-        bookings.set_id(ObjectId.get());
+        bookings.setId(String.valueOf(ObjectId.get()));
         bookings.setStatus(false);
         bookings.setEmail("krshivamranjan@gmail.com");
         bookings.setStationId(2);
         bookings.setVehicleId(String.valueOf(ObjectId.get()));
 
-        when(bookingsService.getBookingById(new ObjectId(bookings.get_id()))).thenReturn(bookings);
+        when(bookingsService.getBookingById(String.valueOf(ObjectId.get()))).thenReturn(Optional.of(bookings));
 
-        ResponseEntity<Bookings> responseEntity = bookingRestController.getBookingById(new ObjectId(bookings.get_id()));
+        ResponseEntity<Bookings> responseEntity = bookingRestController.getBookingById(bookings.getId());
         assertEquals(responseEntity.getBody(),bookings);
         assertEquals(responseEntity.getStatusCodeValue(),200);
 

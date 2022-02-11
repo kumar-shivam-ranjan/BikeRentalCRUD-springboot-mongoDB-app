@@ -45,7 +45,7 @@
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
-                        <p class="card-text" th:text="'Booking ID:  '+${n._id}"></p>
+                        <p class="card-text" th:text="'Booking ID:  '+${n.id}"></p>
                     </li>
                     <li class="list-group-item">
                         <p class="card-text" th:text="'Bike ID:  '+${vehicles[iterator.index]._id}"></p>
@@ -60,7 +60,7 @@
                         <span class="alert" th:classappend="${n.status}?'alert-success':'alert-danger'" th:text="${n.status}?'Booking Approved':'yet to be Approved By Admin'"></span>
 
                 <div class="card-body">
-                    <a th:href="@{'/user/delete-booking/' + ${n._id}}" class="card-link btn btn-danger">Delete</a>
+                    <a th:href="@{'/user/delete-booking/' + ${n.id}}" class="card-link btn btn-danger">Delete</a>
                 </div>
             </div>
 

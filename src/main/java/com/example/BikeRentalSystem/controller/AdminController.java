@@ -4,8 +4,6 @@ import javax.servlet.http.HttpSession;
 import com.example.BikeRentalSystem.RestEndpoints.*;
 import com.example.BikeRentalSystem.entities.*;
 import com.example.BikeRentalSystem.service.SequenceGeneratoryService;
-import io.swagger.models.auth.In;
-import org.apache.catalina.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.bson.types.ObjectId;
@@ -15,7 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import com.example.BikeRentalSystem.messages.Messages;
-import com.example.BikeRentalSystem.repository.UserRepository;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import springfox.documentation.annotations.ApiIgnore;
@@ -144,7 +141,7 @@ public class AdminController {
 		Bookings booking= response.getBody();
 		booking.setStatus(true);
 		restTemplate.postForObject(BookingsEndpoints.POST,booking,Bookings.class);
-		logger.info("Booking Aproved Successfully. Booking id: "+booking.get_id());
+		logger.info("Booking Aproved Successfully. Booking id: "+booking.getId());
 		return "redirect:/admin-show-requests";
 	}
 
