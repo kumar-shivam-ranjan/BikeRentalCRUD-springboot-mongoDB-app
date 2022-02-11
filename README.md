@@ -21,6 +21,17 @@ A company has many hubs located across the city. Each hub has some bikes parked 
 - MongoDB
 - Thymeleaf
 
+## Steps to run this project:
+- **Step 1**:  Clone this github repository through `git clone https://github.com/ksrrock/BikeRentalCRUD-springboot-mongoDB-app.git`
+- **Step 2**:  Open the Root folder `BikeRentalCRUD-springboot-mongoDB-app` on your favourite IDE (IntelliJ or SpringToolSuite)
+- **Step 3**:  Run the imported project using the run button on your IDE
+- **Step 4**:  Access the User Dashboard at http://localhost:8080/user/index
+- **Step 5**:  Access the admin Dashboard at http://localhost:8080/adminlogin
+- **Step 6**:  Credentials for Admin Login is:
+  - Username: admin@gmail.com
+  - Password: admin@123
+
+
 # Schema
 | Users  | Vehicles  | Station |
 | :------------ |:---------------:| -----:|
