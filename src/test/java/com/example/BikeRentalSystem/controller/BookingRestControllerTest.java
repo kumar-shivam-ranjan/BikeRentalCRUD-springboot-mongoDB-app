@@ -11,9 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-
 import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -53,7 +51,7 @@ class BookingRestControllerTest {
         bookings.setStationId(2);
         bookings.setVehicleId(String.valueOf(ObjectId.get()));
 
-        when(bookingsService.getBookingById(String.valueOf(ObjectId.get()))).thenReturn(Optional.of(bookings));
+        when(bookingsService.getBookingById(bookings.getId())).thenReturn(Optional.of(bookings));
 
         ResponseEntity<Bookings> responseEntity = bookingRestController.getBookingById(bookings.getId());
         assertEquals(responseEntity.getBody(),bookings);
