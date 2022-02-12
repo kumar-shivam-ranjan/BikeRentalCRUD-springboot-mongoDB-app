@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Vehicle {
 	
     @Id
-	private ObjectId _id;
+	private String id;
 	private String vehicleType;
 	private String fuelType;
 	private String engine;
@@ -19,28 +19,28 @@ public class Vehicle {
 	private int dailyPrice;
 	private int weeklyPrice;
 
-	public Vehicle(ObjectId _id, String vehicleType, String fuelType, String engine, int mileage, String description, String model, String imageUrl, int dailyPrice, int weeklyPrice) {
-		this._id = _id;
-		this.vehicleType = vehicleType;
-		this.fuelType = fuelType;
-		this.engine = engine;
-		this.mileage = mileage;
-		this.description = description;
-		this.model = model;
-		this.imageUrl = imageUrl;
-		this.dailyPrice = dailyPrice;
-		this.weeklyPrice = weeklyPrice;
+	@Override
+	public String toString() {
+		return "Vehicle{" +
+				"id='" + id + '\'' +
+				", vehicleType='" + vehicleType + '\'' +
+				", fuelType='" + fuelType + '\'' +
+				", engine='" + engine + '\'' +
+				", mileage=" + mileage +
+				", description='" + description + '\'' +
+				", model='" + model + '\'' +
+				", imageUrl='" + imageUrl + '\'' +
+				", dailyPrice=" + dailyPrice +
+				", weeklyPrice=" + weeklyPrice +
+				'}';
 	}
 
-	public Vehicle() {
+	public String getId() {
+		return id;
 	}
 
-	public String get_id() {
-		return _id.toHexString();
-	}
-
-	public void set_id(ObjectId _id) {
-		this._id = _id;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getVehicleType() {
@@ -115,19 +115,19 @@ public class Vehicle {
 		this.weeklyPrice = weeklyPrice;
 	}
 
-	@Override
-	public String toString() {
-		return "Vehicle{" +
-				"_id=" + _id +
-				", vehicleType='" + vehicleType + '\'' +
-				", fuelType='" + fuelType + '\'' +
-				", engine='" + engine + '\'' +
-				", mileage=" + mileage +
-				", description='" + description + '\'' +
-				", model='" + model + '\'' +
-				", imageUrl='" + imageUrl + '\'' +
-				", dailyPrice=" + dailyPrice +
-				", weeklyPrice=" + weeklyPrice +
-				'}';
+	public Vehicle() {
+	}
+
+	public Vehicle(String id, String vehicleType, String fuelType, String engine, int mileage, String description, String model, String imageUrl, int dailyPrice, int weeklyPrice) {
+		this.id = id;
+		this.vehicleType = vehicleType;
+		this.fuelType = fuelType;
+		this.engine = engine;
+		this.mileage = mileage;
+		this.description = description;
+		this.model = model;
+		this.imageUrl = imageUrl;
+		this.dailyPrice = dailyPrice;
+		this.weeklyPrice = weeklyPrice;
 	}
 }

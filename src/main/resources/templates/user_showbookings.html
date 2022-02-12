@@ -48,7 +48,7 @@
                         <p class="card-text" th:text="'Booking ID:  '+${n.id}"></p>
                     </li>
                     <li class="list-group-item">
-                        <p class="card-text" th:text="'Bike ID:  '+${vehicles[iterator.index]._id}"></p>
+                        <p class="card-text" th:text="'Bike ID:  '+${vehicles[iterator.index].id}"></p>
                     </li>
                     <li class="list-group-item">
                         <p class="card-text" th:text="'Station ID:  '+${n.stationId}"></p>
@@ -63,10 +63,9 @@
                     <a th:href="@{'/user/delete-booking/' + ${n.id}}" class="card-link btn btn-danger">Delete</a>
                 </div>
             </div>
-
+            <br>
+            <br>
         </li>
-
-
     </ul>
 
 

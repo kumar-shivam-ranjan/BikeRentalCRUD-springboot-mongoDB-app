@@ -24,7 +24,7 @@ class VehicleServiceTest {
 
     @Test
     void getAllVehicles() {
-        when(vehicleRepository.findAll()).thenReturn(Stream.of(new Vehicle(new ObjectId("61f0cdd0daedc9313578f1df"),"Bike","Petrol","109cc",89,"Vehicle Bike","http","yamaha RTR",100,100)).collect(Collectors.toList()));
+        when(vehicleRepository.findAll()).thenReturn(Stream.of(new Vehicle(String.valueOf(ObjectId.get()),"Bike","Petrol","109cc",89,"Vehicle Bike","http","yamaha RTR",100,100)).collect(Collectors.toList()));
         assertEquals(1,vehicleService.getAllVehicles().size());
     }
 }

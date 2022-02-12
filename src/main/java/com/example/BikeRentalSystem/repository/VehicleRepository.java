@@ -11,8 +11,6 @@ import com.example.BikeRentalSystem.entities.Vehicle;
 @Repository
 public interface VehicleRepository extends MongoRepository<Vehicle, String>{
 
-	public Vehicle findBy_id(ObjectId _id);
-	
 	@Query("{_id: { $in: ?0 }}")
 	public List<Vehicle> findAllVehiclesWithGivenIds(List<String> ids);
 }
