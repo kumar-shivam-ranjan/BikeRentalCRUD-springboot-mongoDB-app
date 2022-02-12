@@ -53,7 +53,7 @@
 						<li class="list-group-item" th:text="${n.description}"></li>
 					</ul>
 					<div class="card-body">
-						<a th:href="@{'/user/book-bike/' + ${n._id} + '/'+ ${sid}}" class="card-link btn btn-success">Book</a>
+						<a th:href="@{'/user/book-bike/' + ${n.id} + '/'+ ${sid}}" class="card-link btn btn-success">Book</a>
 					</div>
 				</div>
 			</div>

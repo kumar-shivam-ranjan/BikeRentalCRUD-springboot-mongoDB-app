@@ -1,5 +1,7 @@
 package com.example.BikeRentalSystem.controller;
 import java.util.List;
+import java.util.Optional;
+
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,14 +37,14 @@ public class VehicleRestController {
 	}
 	
 	@GetMapping("vehicles/{id}")
-	public ResponseEntity<Vehicle> getVehicleById(@PathVariable("id") ObjectId id)
+	public ResponseEntity<Vehicle> getVehicleById(@PathVariable("id") String id)
 	{
-		Vehicle vehicle=vehicleService.getVehicleById(id);
-		if(vehicle==null){
+		Optional<Vehicle> vehicle=vehicleService.getVehicleById(id);
+		if(vehicle.isEmpty()){
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 		}
 		else{
-			return ResponseEntity.ok(vehicle);
+			return ResponseEntity.ok(vehicle.get());
 		}
 	}
 	
@@ -54,12 +56,13 @@ public class VehicleRestController {
 	}
 	
 	@DeleteMapping("vehicles/{id}")
-	public String deleteVehicle(@PathVariable("id") ObjectId id) {
-		return vehicleService.deleteVehicle(id);
+	public ResponseEntity<Vehicle> deleteVehicle(@PathVariable("id") String id) {
+		vehicleService.deleteVehicle(id);
+		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
 	
 	@PutMapping("vehicles/{id}")
-	public ResponseEntity<Vehicle> updateStation(@RequestBody Vehicle vehicle, @PathVariable("id") ObjectId id) {
+	public ResponseEntity<Vehicle> updateStation(@RequestBody Vehicle vehicle, @PathVariable("id") String id) {
 		Vehicle updatedVehicle= vehicleService.updateVehicle(vehicle,id);
 		return ResponseEntity.ok(updatedVehicle);
 	}

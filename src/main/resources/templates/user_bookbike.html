@@ -55,7 +55,7 @@
 				<form th:action="@{/user/process-booking}" method="post">
 					<div class="form-group">
 						<label>Bike ID</label><br>
-						<input type="text" name="vehicleId" class="form-control"  th:value="${bike._id}" readonly>
+						<input type="text" name="vehicleId" class="form-control"  th:value="${bike.id}" readonly>
 					</div><br>
 					<div class="form-group">
 						<label>Station ID</label>

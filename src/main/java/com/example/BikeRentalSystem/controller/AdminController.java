@@ -280,7 +280,7 @@ public class AdminController {
 		vehicle.setFuelType(fuelType);
 		vehicle.setEngine(engine+"cc");
 		vehicle.setVehicleType(vehicleType);
-		vehicle.set_id(ObjectId.get());
+		vehicle.setId(String.valueOf(ObjectId.get()));
 		vehicle.setDescription(description);
 		vehicle.setMileage(mileage);
 		vehicle.setDailyPrice(dailyPrice);
@@ -291,7 +291,7 @@ public class AdminController {
 		inventory.setAvailabilityStatus(true);
 		inventory.setQuantity(quantity);
 		inventory.setStationId(stationId);
-		inventory.setVehicleId(vehicle.get_id());
+		inventory.setVehicleId(vehicle.getId());
 		inventory.setId(sequenceGeneratoryService.getSequenceNumber(Inventory.SEQUENCE_NAME));
 		logger.warn(inventory);
 		logger.warn(vehicle);

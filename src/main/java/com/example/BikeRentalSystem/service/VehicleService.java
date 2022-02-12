@@ -1,7 +1,8 @@
 package com.example.BikeRentalSystem.service;
 
 import java.util.List;
-import org.bson.types.ObjectId;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.BikeRentalSystem.entities.Vehicle;
@@ -30,44 +31,18 @@ public class VehicleService {
 	}
 
 
-	public String deleteVehicle(ObjectId id) {
-
-		try {
-			Vehicle vehicle=vehicleRepository.findBy_id(id);
-			vehicleRepository.delete(vehicle);
-			return "Vehicle Deleted Successfully";
-		} catch (Exception e) {			
-			return "No such Vehicle exists";
-		}
-		
+	public void deleteVehicle(String id) {
+		this.vehicleRepository.deleteById(id);
 	}
 
 
-	public Vehicle updateVehicle(Vehicle vehicle, ObjectId id) {
-		try {
-			Vehicle vehicleOld=vehicleRepository.findBy_id(id);
-			vehicleOld.setDescription(vehicle.getDescription());
-			vehicleOld.setMileage(vehicle.getMileage());
-			vehicleOld.setModel(vehicle.getModel());
-			vehicleOld.setVehicleType(vehicle.getVehicleType());
-			vehicleOld.setEngine(vehicle.getEngine());
-			vehicleOld.setFuelType(vehicle.getFuelType());
-			vehicleOld.setImageUrl(vehicle.getImageUrl());
-			Vehicle newUpdatedVehicle=vehicleRepository.save(vehicleOld);
-			return newUpdatedVehicle;
-		} catch (Exception e) {
-			return null;
-		}
+	public Vehicle updateVehicle(Vehicle vehicle, String id) {
+			vehicle.setId(id);
+			return this.vehicleRepository.save(vehicle);
 	}
 
 
-	public Vehicle getVehicleById(ObjectId id) {
-		try {
-			Vehicle vehicle=vehicleRepository.findBy_id(id);
-			return vehicle;
-		} catch (Exception e) {
-			return null;
-		}
+	public Optional<Vehicle> getVehicleById(String id) {
+		return this.vehicleRepository.findById(id);
 	}
-	
 }
